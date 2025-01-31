@@ -197,7 +197,7 @@ class BLP1Decoder():
         elif format_type == Format.JPEG:
             # 这里好像是可以吧jpeg的头部信息拆出来合并在最前面略微压缩图片大小
             data += struct.pack("<I", 0)
-            for i in range(mipmap_count + 1):
+            for i in range(mipmap_count):
                 mipmap_img = self.img.resize((max(1, int(self.img.width / (1 << i))), max(1, int(self.img.height / (1 << i)))))
                 c, m, y, k = mipmap_img.convert('RGBA').split()
                 c = Image.eval(c, lambda a: 255 - a)
